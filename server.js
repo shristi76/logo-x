@@ -10,18 +10,18 @@ require('dotenv').config();
 const app = express();
 const port = 3000;
 
-// MySQL connection
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '2005@',
-    database: 'userDB',
-});
+// // MySQL connection
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '2005@',
+//     database: 'userDB',
+// });
 
-db.connect(err => {
-    if (err) throw err;
-    console.log('✅ Connected to MySQL!');
-});
+// db.connect(err => {
+//     if (err) throw err;
+//     console.log('✅ Connected to MySQL!');
+// });
 
 // Middleware
 app.use(cors());
@@ -76,33 +76,33 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'logo.html'));
 });
 
-// Register route
-app.post('/register', async (req, res) => {
-    const { username, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
+// // Register route
+// app.post('/register', async (req, res) => {
+//     const { username, password } = req.body;
+//     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const query = 'INSERT INTO users (username, password) VALUES (?, ?)';
-    db.query(query, [username, hashedPassword], (err, result) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.status(200).json({ message: 'User registered successfully!' });
-    });
-});
+//     const query = 'INSERT INTO users (username, password) VALUES (?, ?)';
+//     db.query(query, [username, hashedPassword], (err, result) => {
+//         if (err) return res.status(500).json({ error: err.message });
+//         res.status(200).json({ message: 'User registered successfully!' });
+//     });
+// });
 
-// Login route
-app.post('/login', (req, res) => {
-    const { username, password } = req.body;
+// // Login route
+// app.post('/login', (req, res) => {
+//     const { username, password } = req.body;
 
-    const query = 'SELECT * FROM users WHERE username = ?';
-    db.query(query, [username], async (err, results) => {
-        if (err) return res.status(500).json({ error: err.message });
-        if (results.length === 0) return res.status(400).json({ message: 'User not found!' });
+//     const query = 'SELECT * FROM users WHERE username = ?';
+//     db.query(query, [username], async (err, results) => {
+//         if (err) return res.status(500).json({ error: err.message });
+//         if (results.length === 0) return res.status(400).json({ message: 'User not found!' });
 
-        const user = results[0];
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(400).json({ message: 'Incorrect password!' });
+//         const user = results[0];
+//         const isMatch = await bcrypt.compare(password, user.password);
+//         if (!isMatch) return res.status(400).json({ message: 'Incorrect password!' });
 
-        res.status(200).json({ message: 'Login successful!' });
-    });
+//         res.status(200).json({ message: 'Login successful!' });
+//     });
 });
 
 // Start server
