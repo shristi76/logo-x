@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Logo Ideas</title>
+  
+ 
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+  
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+  
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #000000, #f30889e1);
+      background-size: 200% 200%;
+      animation: softBackground 12s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+  
+    @keyframes softBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #3dff0c;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  
+    p {
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+  
+    .search-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease;
+    }
+  
+    .search-container input {
+      width: 100%;
+      padding: 14px 20px;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+  
+    .search-container input:focus {
+      border-color: #33fc01;
+      box-shadow: 0 0 10px rgba(255, 239, 8, 0.986);
+      outline: none;
+    }
+  
+    .search-container button {
+      background-color: #d7ee0b;
+      color: #000000;
+      padding: 14px 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+    }
+  
+    .search-container button:hover {
+      background-color: #13adeb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(18, 113, 221, 0.4);
+    }
+  
+    .logo-ideas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 1100px;
+    }
+  
+    .logo-idea {
+      background: #f9fcf8;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      padding: 20px;
+      text-align: center;
+      animation: fadeInCard 0.6s ease-in-out;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+    .logo-idea:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    }
+  
+    .logo-idea img {
+      width: 200px;
+      height: auto;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+  
+    .logo-idea img:hover {
+      transform: scale(1.05);
+    }
+  
+    .logo-idea p {
+      margin-top: 12px;
+      font-size: 1rem;
+      color: #333;
+    }
+  
+    .download-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #28a745;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(40, 167, 69, 0.25);
+    }
+  
+    .download-btn:hover {
+      background-color: #218838;
+    }
+  
+    @keyframes fadeInCard {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .search-container button { width: 100%; }
+    }
+  </style>
+  
+</head>
+<body>
+  <h1>AI-Powered Logo Ideas</h1>
+  <p>Enter your company details to get a custom AI-generated logo with your company name on it!</p>
+
+  <div class="search-container">
+    <input type="text" id="companyName" placeholder="Company Name (e.g. DreamTech)" />
+    <input type="text" id="companyType" placeholder="Company Type (e.g. Tech, Fashion, Food)" />
+    <input type="text" id="description" placeholder="Logo Style or Description (e.g. modern, clean, bold)" />
+    <button onclick="generateLogo()">Generate Logo</button>
+  </div>
+
+  <div id="logoIdeasContainer" class="logo-ideas"></div>
+
+  <script>
+    async function generateLogo() {
+      const companyName = document.getElementById('companyName').value.trim();
+      const companyType = document.getElementById('companyType').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const container = document.getElementById('logoIdeasContainer');
+
+      container.innerHTML = '';
+
+      if (!companyName || !companyType) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      const loader = document.createElement('p');
+      loader.textContent = 'Generating logo using AI... please wait ⏳';
+      container.appendChild(loader);
+
+      try {
+        const res = await fetch('http://localhost:3000/generate-logo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ companyName, companyType, description })
+        });
+
+        const data = await res.json();
+        container.innerHTML = '';
+
+        const card = document.createElement('div');
+        card.className = 'logo-idea';
+
+        const img = document.createElement('img');
+        img.src = data.image;
+        img.alt = `AI Logo for ${companyName}`;
+
+        const desc = document.createElement('p');
+        desc.textContent = `Logo for "${companyName}" (${companyType})`;
+
+        const downloadLink = document.createElement('a');
+        downloadLink.href = data.image;
+        downloadLink.download = `${companyName.toLowerCase().replace(/\s+/g, '-')}-logo.png`;
+        downloadLink.textContent = 'Download Logo';
+        downloadLink.className = 'download-btn';
+
+        card.appendChild(img);
+        card.appendChild(desc);
+        card.appendChild(downloadLink);
+        container.appendChild(card);
+      } catch (error) {
+        console.error(error);
+        container.innerHTML = `<p>❌ Failed to fetch logo image. Please try again later.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
