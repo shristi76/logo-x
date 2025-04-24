@@ -105,7 +105,14 @@ app.get('/', (req, res) => {
 //     });
 // });
 
-// Start server
-app.listen(port, () => {
-    console.log(`🚀 Server running at: http://localhost:${port}`);
+// // Start server
+// app.listen(port, () => {
+//     console.log(`🚀 Server running at: http://localhost:${port}`);
+// });
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
+
