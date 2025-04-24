@@ -103,7 +103,7 @@ app.get('/', (req, res) => {
 
 //         res.status(200).json({ message: 'Login successful!' });
 //     });
-});
+// });
 
 // Start server
 app.listen(port, () => {
