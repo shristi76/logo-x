@@ -23,6 +23,8 @@ Optimized for desktops, tablets, and mobiles
 
 MySQL Database Integration
 
+
+
 Store user information securely
 
 API Integration
@@ -39,7 +41,7 @@ Database: MySQL
 External APIs: hugging face
 
 Hosting:render
-
+website link:  https://logo-x.onrender.com/logo.html
 
 
 
